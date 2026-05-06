@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import psycopg2
 from werkzeug.security import generate_password_hash, check_password_hash
 from morse_logic import encode_text, decode_text
+import os
 
 app = Flask(__name__)
 app.secret_key = "morse_secret_key"
@@ -10,7 +11,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="morse_app",
     user="postgres",
-    password="kavihiy13",
+    password=os.getenv("DB_PASSWORD"),
     port="5432"
 )
 
