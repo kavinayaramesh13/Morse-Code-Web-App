@@ -1,0 +1,264 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* MAIN WRAPPER */
+.page-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* MAIN CARD */
+.card{
+    width:100%;
+    max-width:700px;
+    background:rgba(255,255,255,0.08);
+    padding:35px;
+    border-radius:20px;
+    backdrop-filter:blur(14px);
+    transition:0.4s ease;
+}
+
+/* SHIFT LOGIC */
+.page-wrapper.user-open:not(.both-open) .card{
+    transform:translateX(180px);
+}
+
+.page-wrapper.history-open:not(.both-open) .card{
+    transform:translateX(-180px);
+}
+
+.page-wrapper.both-open .card{
+    transform:scale(0.85);
+}
+
+/* TEXT */
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:20px;
+}
+
+/* INPUT */
+textarea{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    resize:none;
+    margin-bottom:20px;
+}
+
+/* BUTTONS */
+.btn-group{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+button{
+    padding:12px 24px;
+    border:none;
+    border-radius:10px;
+    background:#06b6d4;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0891b2;
+}
+
+/* RESULT */
+.result-box{
+    margin-top:20px;
+    padding:18px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.06);
+}
+
+.extra-btns{
+    margin-top:18px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+    width:280px;
+    background:rgba(15,23,42,0.95);
+    backdrop-filter:blur(16px);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    transform:translateX(-100%);
+    transition:0.4s ease;
+}
+
+.page-wrapper.user-open .sidebar{
+    transform:translateX(0);
+}
+
+.sidebar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.user-info{
+    display:flex;
+    gap:12px;
+    align-items:center;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#06b6d4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.username{
+    font-weight:bold;
+}
+
+.email{
+    font-size:12px;
+    color:#cbd5e1;
+}
+
+.close-icon{
+    cursor:pointer;
+}
+
+/* SIDE BY SIDE BUTTONS */
+.sidebar-footer{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+.sidebar-footer button{
+    width:120px;
+}
+
+/* FIX FOR <a> WRAPPING BUTTON */
+.sidebar-footer a{
+    display:flex;
+}
+
+/* BUTTON COLORS */
+.help-btn{
+    background:#06b6d4;
+}
+
+.help-btn:hover{
+    background:#0891b2;
+}
+
+.logout-btn{
+    background:#ef4444;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+}
+
+/* HISTORY PANEL */
+.history-card{
+    position:absolute;
+    right:30px;
+    top:50%;
+    transform:translateY(-50%) scaleX(0);
+    transform-origin:right;
+
+    width:320px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:25px;
+
+    opacity:0;
+    transition:0.4s ease;
+}
+
+.page-wrapper.history-open .history-card{
+    transform:translateY(-50%) scaleX(1);
+    opacity:1;
+}
+
+.history-card li{
+    background:rgba(255,255,255,0.05);
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:8px;
+}
+
+/* HELP PANEL */
+.help-card{
+    position:absolute;
+    right:30px;
+    top:50%;
+    transform:translateY(-50%) scaleX(0);
+    transform-origin:right;
+
+    width:320px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:25px;
+
+    opacity:0;
+    transition:0.4s ease;
+}
+
+.page-wrapper.help-open .help-card{
+    transform:translateY(-50%) scaleX(1);
+    opacity:1;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+    width:100%;
+    margin-top:20px;
+}
+
+/* MENU BUTTON */
+.corner-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:1000;
+}
+
+.corner-btn.hidden{
+    opacity:0;
+    pointer-events:none;
+}

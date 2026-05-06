@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morse App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- MENU BUTTON -->
+<button id="menuBtn" class="corner-btn" onclick="openUser()">☰</button>
+
+<div class="page-wrapper" id="pageWrapper">
+
+    <!-- USER SIDEBAR -->
+    <div class="sidebar" id="userPanel">
+
+        <div class="sidebar-header">
+            <div class="user-info">
+                <div class="avatar">{{ username[0]|upper }}</div>
+                <div>
+                    <p class="username">{{ username }}</p>
+                    <p class="email">{{ email }}</p>
+                </div>
+            </div>
+
+            <span class="close-icon" onclick="closeUser()">✕</span>
+        </div>
+
+        <!-- SIDE BY SIDE BUTTONS -->
+        <div class="sidebar-footer">
+            <button class="help-btn" onclick="openHelp()">Reference</button>
+
+            <a href="/logout">
+                <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card">
+        <h1>Morse Code Encoder / Decoder</h1>
+        <p class="subtitle">Convert text and Morse instantly</p>
+
+        <form method="POST">
+            <textarea name="text" id="inputText" rows="6"
+                placeholder="Enter text or Morse code..."></textarea>
+
+            <div class="btn-group">
+                <button type="submit" name="action" value="encode">Encode</button>
+                <button type="submit" name="action" value="decode">Decode</button>
+            </div>
+        </form>
+
+        <div class="result-box">
+            <h2>Result</h2>
+            <p id="resultText">{{ output }}</p>
+        </div>
+
+        <div class="btn-group extra-btns">
+            <button type="button" onclick="clearAll()">Clear All</button>
+            <button type="button" onclick="openHistory()">History</button>
+            <button type="button" onclick="playMorse()">🔊 Play</button>
+        </div>
+    </div>
+
+    <!-- HISTORY PANEL -->
+    <div class="history-card" id="historyPanel">
+        <h2>History</h2>
+
+        {% if history %}
+            <ul>
+                {% for item in history %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No history yet.</p>
+        {% endif %}
+
+        <button class="close-btn" onclick="closeHistory()">Close</button>
+    </div>
+
+    <!-- HELP PANEL -->
+    <div class="help-card" id="helpPanel">
+        <h2>Morse Reference</h2>
+
+        <p><b>Letters:</b></p>
+        <p>A .- | B -... | C -.-. | D -.. | E .</p>
+        <p>F ..-. | G --. | H .... | I .. | J .---</p>
+        <p>K -.- | L .-.. | M -- | N -. | O ---</p>
+        <p>P .--. | Q --.- | R .-. | S ... | T -</p>
+        <p>U ..- | V ...- | W .-- | X -..- | Y -.-- | Z --..</p>
+        <br>
+        <p><b>Numbers:</b></p>
+        <p>1 .---- | 2 ..--- | 3 ...-- | 4 ....- | 5 .....</p>
+        <p>6 -.... | 7 --... | 8 ---.. | 9 ----. | 0 -----</p>
+        <br>
+        <p><b>Space:</b> /</p>
+
+        <button class="close-btn" onclick="closeHelp()">Close</button>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+
+<div class="auth-box">
+    <h1>Login</h1>
+
+    <form method="POST" autocomplete="off">
+
+        <!-- Fake fields to trick browser -->
+        <input type="text" name="fakeuser" style="display:none">
+        <input type="password" name="fakepass" style="display:none">
+
+        <!-- Real fields -->
+        <input type="text" name="username" placeholder="Username"
+               autocomplete="off" autocapitalize="off" spellcheck="false" required>
+
+        <input type="password" name="password" placeholder="Password"
+               autocomplete="new-password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p class="msg">{{ message }}</p>
+    <p>No account? <a href="/signup">Signup</a></p>
+</div>
+
+</body>
+</html>
